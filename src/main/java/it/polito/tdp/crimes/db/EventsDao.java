@@ -125,6 +125,7 @@ public class EventsDao {
 			    ResultSet res = st.executeQuery() ;
 			    
 			    if(res.next()) {
+			    	conn.close();
 			    	return  res.getDouble("latMedia");
 			    }else {
 			    	conn.close();
@@ -152,6 +153,7 @@ public class EventsDao {
 			    ResultSet res = st.executeQuery() ;
 			    
 			    if(res.next()) {
+			    	conn.close();
 			    	return  res.getDouble("lonMedia");
 			    }else {
 			    	conn.close();

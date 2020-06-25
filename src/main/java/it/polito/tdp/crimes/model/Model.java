@@ -1,6 +1,9 @@
 package it.polito.tdp.crimes.model;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
@@ -55,5 +58,18 @@ public class Model {
 		public int nArchi() {
 		return this.grafo.edgeSet().size();
 		}
-	
+		public Set<Integer> getVertici(){
+			return this.grafo.vertexSet();
+		}
+		public List<Vicino> getVicini(Integer v){
+			
+		List<Vicino> vicini = new LinkedList<Vicino>();
+			
+			for(Integer i : Graphs.neighborListOf(this.grafo, v)) {
+				Double peso = this.grafo.getEdgeWeight(this.grafo.getEdge(i, v));
+				vicini.add(new Vicino(i,peso));
+			}
+		Collections.sort(vicini);
+		return vicini;
+		}
 }

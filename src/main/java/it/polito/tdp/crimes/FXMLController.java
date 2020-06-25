@@ -5,9 +5,12 @@
 package it.polito.tdp.crimes;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.crimes.model.Model;
+import it.polito.tdp.crimes.model.Vicino;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,7 +57,14 @@ public class FXMLController {
     	 return;
      }
     	this.model.creaGrafo(anno);
-    	txtResult.appendText(String.format("Grafo creato con %d vertici e %d archi", this.model.nVertici(), this.model.nArchi()));
+    	txtResult.appendText(String.format("Grafo creato con %d vertici e %d archi", this.model.nVertici(), this.model.nArchi())+"\n");
+    	List<Integer> vertici = new LinkedList<Integer>(this.model.getVertici());
+    	for(Integer i : vertici ) {
+    	txtResult.appendText("Vicini del vertice " +i +"\n");
+    	for(Vicino v : this.model.getVicini(i)) {
+    	txtResult.appendText(v.toString()+"\n");
+    	}
+    	}
     }
 
     @FXML
