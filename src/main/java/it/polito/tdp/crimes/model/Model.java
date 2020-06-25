@@ -28,6 +28,12 @@ public class Model {
 	public List<Integer> getAnni(){
 		return this.dao.getAnni();
 	}
+	public List<Integer> getMesi(){
+		return this.dao.getMesi();
+	}
+	public List<Integer> getGiorni(){
+		return this.dao.getGiorni();
+	}
 	public void creaGrafo(Integer anno) {
 		vertici = this.dao.getVertici();
 		grafo = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
