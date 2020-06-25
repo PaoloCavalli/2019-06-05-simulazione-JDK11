@@ -84,5 +84,34 @@ public class EventsDao {
 		return null ;
 	}
 	}
+	public List<Integer> getVertici(){
+		final String sql = "SELECT DISTINCT e.district_id AS dis " + 
+				"FROM `events` AS e " + 
+				"ORDER BY dis asc ";
+		List<Integer> distretti = new ArrayList<Integer>();
+		try {
+			Connection conn = DBConnect.getConnection() ;
+
+			PreparedStatement st = conn.prepareStatement(sql) ;
+	        
+			ResultSet res = st.executeQuery() ;
+			
+			while(res.next()) {
+				
+				distretti.add(res.getInt("dis"));
+				
+			}
+			
+			conn.close();
+			return distretti;
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null ;
+	}	
+		
+	}
+	
 
 }
