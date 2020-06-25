@@ -8,6 +8,7 @@ import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 import it.polito.tdp.crimes.db.EventsDao;
+import it.polito.tdp.crimes.model.Evento.TipoEvento;
 
 public class Simulatore {
 
@@ -45,6 +46,10 @@ public class Simulatore {
 		this.agenti.put(minD, N);
 		
 		this.queue = new PriorityQueue<Evento>();
+		
+		for(Event e : dao.listAllEventsByDate(anno, mese, giorno)) {
+			queue.add(new Evento(TipoEvento.CRIMINE, e.getReported_date(), e));
+		}
 		
 		
 	}
