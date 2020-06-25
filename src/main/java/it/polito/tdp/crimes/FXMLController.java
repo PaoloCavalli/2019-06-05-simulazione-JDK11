@@ -47,7 +47,14 @@ public class FXMLController {
 
     @FXML
     void doCreaReteCittadina(ActionEvent event) {
-
+     txtResult.clear();
+     Integer anno = this.boxAnno.getValue();
+     if(anno== null ) {
+    	 txtResult.appendText("Seleziona anno");
+    	 return;
+     }
+    	this.model.creaGrafo(anno);
+    	txtResult.appendText(String.format("Grafo creato con %d vertici e %d archi", this.model.nVertici(), this.model.nArchi()));
     }
 
     @FXML

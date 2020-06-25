@@ -109,9 +109,63 @@ public class EventsDao {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		return null ;
+	}
 	}	
-		
+		public Double getLatMedia(Integer anno, Integer distretto) {
+			final String sql="SELECT AVG (e.geo_lat) AS latMedia " + 
+					"FROM `events` AS e " + 
+					"WHERE YEAR (e.reported_date)=? AND e.district_id=?";
+			
+			try {
+				Connection conn = DBConnect.getConnection() ;
+
+				PreparedStatement st = conn.prepareStatement(sql) ;
+			    st.setInt(1, anno);
+			    st.setInt(2, distretto);
+			    ResultSet res = st.executeQuery() ;
+			    
+			    if(res.next()) {
+			    	return  res.getDouble("latMedia");
+			    }else {
+			    	conn.close();
+			    	return  null;
+			    }
+	  
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null ;
+			}
+		}
+		public Double getLonMedia(Integer anno, Integer distretto) {
+			final String sql="SELECT AVG (e.geo_lon) AS lonMedia " + 
+					"FROM `events` AS e " + 
+					"WHERE YEAR (e.reported_date)=? AND e.district_id=?";
+			
+			try {
+				Connection conn = DBConnect.getConnection() ;
+
+				PreparedStatement st = conn.prepareStatement(sql) ;
+			    st.setInt(1, anno);
+			    st.setInt(2, distretto);
+			    ResultSet res = st.executeQuery() ;
+			    
+			    if(res.next()) {
+			    	return  res.getDouble("lonMedia");
+			    }else {
+			    	conn.close();
+			    	return  null;
+			    }
+	  
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null ;
+			}
+		}
 	}
 	
 
-}
+
