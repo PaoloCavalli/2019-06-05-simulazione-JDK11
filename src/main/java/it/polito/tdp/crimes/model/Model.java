@@ -78,5 +78,10 @@ public class Model {
 		Collections.sort(vicini);
 		return vicini;
 		}
+		public int simula(Integer anno, Integer mese, Integer giorno, Integer N) {
+			Simulatore salvatore = new Simulatore();
+			salvatore.init(N, anno, mese, giorno, grafo);
+			return salvatore.run();
+		}
 		
 }
